@@ -1,30 +1,43 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import { env } from "../env";
+import { log } from "node:console";
 
-interface JwtPayload {
+export interface AuthTokenPayload {
   userId: string;
 }
 
-// Extend Express Request to include user
 declare module "express-serve-static-core" {
   interface Request {
-    user?: JwtPayload;
+    user?: AuthTokenPayload;
   }
 }
 
 export const auth = (req: Request, res: Response, next: NextFunction) => {
-  const header = req.headers.authorization;
-  if (!header?.startsWith("Bearer "))
-    return res.status(401).json({ message: "Unauthorized" });
+  const authHeader = req.headers.authorization;
+  console.log("auth header", req.headers.authorization);
 
-  const token = header.split(" ")[1];
+  if (!authHeader)
+    return res.status(401).json({ message: "Authorization header missing" });
+
+  if (!authHeader.startsWith("Bearer "))
+    return res.status(401).json({ message: "Invalid authorization format" });
+
+  const token = authHeader.split(" ")[1];
+
+  if (!token) return res.status(401).json({ message: "Token missing" });
 
   try {
-    const payload = jwt.verify(token, env.JWT_SECRET) as JwtPayload;
-    req.user = payload;
+    const decoded = jwt.verify(token, env.JWT_SECRET);
+    console.log("decoded", decoded);
+
+    if (typeof decoded !== "object" || !("userId" in decoded))
+      return res.status(401).json({ message: "Invalid token payload" });
+
+    req.user = decoded as AuthTokenPayload;
+
     next();
-  } catch {
-    res.status(401).json({ message: "Invalid token" });
+  } catch (err) {
+    return res.status(401).json({ message: "Invalid or expired token" });
   }
 };

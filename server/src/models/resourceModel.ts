@@ -1,14 +1,14 @@
 import mongoose from "mongoose";
-import { Document } from "mongoose";
+import { HydratedDocument } from "mongoose";
 
 export type ScopeType = "WORKSPACE" | "PRIVATE";
 export type ResourceType = "URL" | "DOCUMENT" | "CARD";
 
-export interface IUserResource extends Document {
+export interface IUserResource {
   title: string;
   ownerId: string;
   scope: ScopeType;
-  workspaceId?: string;
+  // workspaceId?: string;
   resourceType: ResourceType;
   url?: string;
   fileType?: string;
@@ -30,11 +30,11 @@ const userResourceSchema = new mongoose.Schema<IUserResource>(
       index: true,
     },
 
-    workspaceId: {
-      type: String,
+    // workspaceId: {
+    //   type: String,
 
-      index: true,
-    },
+    //   index: true,
+    // },
 
     resourceType: {
       type: String,
@@ -51,6 +51,7 @@ const userResourceSchema = new mongoose.Schema<IUserResource>(
   },
   { timestamps: true },
 );
+export type UserResourceDoc = HydratedDocument<IUserResource>;
 
 export const userResourceModel = mongoose.model<IUserResource>(
   "userResource",

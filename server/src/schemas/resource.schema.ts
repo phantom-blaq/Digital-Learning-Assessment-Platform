@@ -7,7 +7,7 @@ export const baseResourceSchema = z.object({
   title: z.string().min(1),
   ownerId: z.string(),
   scope: ScopeEnum,
-  workspaceId: z.string().optional(),
+  // workspaceId: z.string().optional(),
   resourceType: ResourceTypeEnum,
 });
 
