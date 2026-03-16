@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import { loginSchema, signupSchema, signupBodyType } from "./type";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
@@ -10,7 +11,7 @@ export async function registerUser(
   password: string,
 ) {
   const hashedPassword = await bcrypt.hash(password, 10);
-  const user = await prisma.user.create({
+  const user: signupBodyType = await prisma.user.create({
     data: {
       email,
       username,
