@@ -1,6 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import { prisma } from "./lib/prisma";
+import UserRouter from "./api/user/routes";
+import SourceRouter from "./api/source/routes";
 
 dotenv.config();
 
@@ -8,6 +10,9 @@ const app = express();
 app.use(express.json());
 
 const port = process.env.PORT || 8000;
+
+app.use("/user", UserRouter);
+app.use("/source", SourceRouter);
 
 async function startServer() {
   try {

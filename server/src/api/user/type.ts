@@ -1,4 +1,4 @@
-import { email, z } from "zod";
+import { z } from "zod";
 
 export const loginSchema = z.object({
   email: z.string(),
@@ -8,9 +8,8 @@ export const loginSchema = z.object({
 export type loginBodyType = z.infer<typeof loginSchema>;
 
 export const signupSchema = z.object({
-  username: z.string(),
+  name: z.string().nullable(),
   email: z.string(),
   password: z.string(),
 });
-
 export type signupBodyType = z.infer<typeof signupSchema>;

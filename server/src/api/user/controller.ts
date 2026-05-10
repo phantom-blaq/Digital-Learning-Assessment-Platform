@@ -2,10 +2,10 @@ import { Request, Response } from "express";
 import { registerUser, loginUser } from "./service";
 
 export async function register(req: Request, res: Response) {
-  const { email, username, password } = req.body;
+  const { email, name, password } = req.body;
   try {
-    const token = await registerUser(email, username, password);
-    res.status(200).send({ token });
+    const registeredUser = await registerUser(email, name, password);
+    res.status(200).send(registeredUser);
   } catch (error: any) {
     res
       .status(400)
@@ -16,8 +16,8 @@ export async function register(req: Request, res: Response) {
 export async function login(req: Request, res: Response) {
   const { email, password } = req.body;
   try {
-    const token = await loginUser(email, password);
-    res.status(200).send({ token });
+    const userLoggedIn = await loginUser(email, password);
+    res.status(200).send(userLoggedIn);
   } catch (error: any) {
     res.status(400).send({ message: "Login failed", error: error.message });
   }
