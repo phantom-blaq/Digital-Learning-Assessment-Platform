@@ -8,7 +8,7 @@ export async function registerUser(
   password: string,
 ) {
   const hashedPassword = await bcrypt.hash(password, 10);
-  const user = await prisma.user.create({
+  const user = await prisma.profile.create({
     data: {
       name,
       email,
@@ -21,7 +21,7 @@ export async function registerUser(
 }
 
 export async function loginUser(email: string, password: string) {
-  const user = await prisma.user.findUnique({
+  const user = await prisma.profile.findUnique({
     where: { email },
   });
   if (!user || !(await bcrypt.compare(password, user.password))) {

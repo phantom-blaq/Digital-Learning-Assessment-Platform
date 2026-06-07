@@ -190,6 +190,7 @@ export type SourceWhereInput = {
   type?: Prisma.EnumSourceTypeFilter<"Source"> | $Enums.SourceType
   body?: Prisma.StringNullableFilter<"Source"> | string | null
   url?: Prisma.StringNullableFilter<"Source"> | string | null
+  profile?: Prisma.XOR<Prisma.ProfileScalarRelationFilter, Prisma.ProfileWhereInput>
 }
 
 export type SourceOrderByWithRelationInput = {
@@ -199,6 +200,7 @@ export type SourceOrderByWithRelationInput = {
   type?: Prisma.SortOrder
   body?: Prisma.SortOrderInput | Prisma.SortOrder
   url?: Prisma.SortOrderInput | Prisma.SortOrder
+  profile?: Prisma.ProfileOrderByWithRelationInput
 }
 
 export type SourceWhereUniqueInput = Prisma.AtLeast<{
@@ -211,6 +213,7 @@ export type SourceWhereUniqueInput = Prisma.AtLeast<{
   type?: Prisma.EnumSourceTypeFilter<"Source"> | $Enums.SourceType
   body?: Prisma.StringNullableFilter<"Source"> | string | null
   url?: Prisma.StringNullableFilter<"Source"> | string | null
+  profile?: Prisma.XOR<Prisma.ProfileScalarRelationFilter, Prisma.ProfileWhereInput>
 }, "id">
 
 export type SourceOrderByWithAggregationInput = {
@@ -239,11 +242,11 @@ export type SourceScalarWhereWithAggregatesInput = {
 
 export type SourceCreateInput = {
   id?: string
-  profileId: string
   title?: string | null
   type: $Enums.SourceType
   body?: string | null
   url?: string | null
+  profile: Prisma.ProfileCreateNestedOneWithoutSourcesInput
 }
 
 export type SourceUncheckedCreateInput = {
@@ -257,11 +260,11 @@ export type SourceUncheckedCreateInput = {
 
 export type SourceUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  profileId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumSourceTypeFieldUpdateOperationsInput | $Enums.SourceType
   body?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile?: Prisma.ProfileUpdateOneRequiredWithoutSourcesNestedInput
 }
 
 export type SourceUncheckedUpdateInput = {
@@ -284,7 +287,6 @@ export type SourceCreateManyInput = {
 
 export type SourceUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  profileId?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.EnumSourceTypeFieldUpdateOperationsInput | $Enums.SourceType
   body?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -298,6 +300,16 @@ export type SourceUncheckedUpdateManyInput = {
   type?: Prisma.EnumSourceTypeFieldUpdateOperationsInput | $Enums.SourceType
   body?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type SourceListRelationFilter = {
+  every?: Prisma.SourceWhereInput
+  some?: Prisma.SourceWhereInput
+  none?: Prisma.SourceWhereInput
+}
+
+export type SourceOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type SourceCountOrderByAggregateInput = {
@@ -327,8 +339,136 @@ export type SourceMinOrderByAggregateInput = {
   url?: Prisma.SortOrder
 }
 
+export type SourceCreateNestedManyWithoutProfileInput = {
+  create?: Prisma.XOR<Prisma.SourceCreateWithoutProfileInput, Prisma.SourceUncheckedCreateWithoutProfileInput> | Prisma.SourceCreateWithoutProfileInput[] | Prisma.SourceUncheckedCreateWithoutProfileInput[]
+  connectOrCreate?: Prisma.SourceCreateOrConnectWithoutProfileInput | Prisma.SourceCreateOrConnectWithoutProfileInput[]
+  createMany?: Prisma.SourceCreateManyProfileInputEnvelope
+  connect?: Prisma.SourceWhereUniqueInput | Prisma.SourceWhereUniqueInput[]
+}
+
+export type SourceUncheckedCreateNestedManyWithoutProfileInput = {
+  create?: Prisma.XOR<Prisma.SourceCreateWithoutProfileInput, Prisma.SourceUncheckedCreateWithoutProfileInput> | Prisma.SourceCreateWithoutProfileInput[] | Prisma.SourceUncheckedCreateWithoutProfileInput[]
+  connectOrCreate?: Prisma.SourceCreateOrConnectWithoutProfileInput | Prisma.SourceCreateOrConnectWithoutProfileInput[]
+  createMany?: Prisma.SourceCreateManyProfileInputEnvelope
+  connect?: Prisma.SourceWhereUniqueInput | Prisma.SourceWhereUniqueInput[]
+}
+
+export type SourceUpdateManyWithoutProfileNestedInput = {
+  create?: Prisma.XOR<Prisma.SourceCreateWithoutProfileInput, Prisma.SourceUncheckedCreateWithoutProfileInput> | Prisma.SourceCreateWithoutProfileInput[] | Prisma.SourceUncheckedCreateWithoutProfileInput[]
+  connectOrCreate?: Prisma.SourceCreateOrConnectWithoutProfileInput | Prisma.SourceCreateOrConnectWithoutProfileInput[]
+  upsert?: Prisma.SourceUpsertWithWhereUniqueWithoutProfileInput | Prisma.SourceUpsertWithWhereUniqueWithoutProfileInput[]
+  createMany?: Prisma.SourceCreateManyProfileInputEnvelope
+  set?: Prisma.SourceWhereUniqueInput | Prisma.SourceWhereUniqueInput[]
+  disconnect?: Prisma.SourceWhereUniqueInput | Prisma.SourceWhereUniqueInput[]
+  delete?: Prisma.SourceWhereUniqueInput | Prisma.SourceWhereUniqueInput[]
+  connect?: Prisma.SourceWhereUniqueInput | Prisma.SourceWhereUniqueInput[]
+  update?: Prisma.SourceUpdateWithWhereUniqueWithoutProfileInput | Prisma.SourceUpdateWithWhereUniqueWithoutProfileInput[]
+  updateMany?: Prisma.SourceUpdateManyWithWhereWithoutProfileInput | Prisma.SourceUpdateManyWithWhereWithoutProfileInput[]
+  deleteMany?: Prisma.SourceScalarWhereInput | Prisma.SourceScalarWhereInput[]
+}
+
+export type SourceUncheckedUpdateManyWithoutProfileNestedInput = {
+  create?: Prisma.XOR<Prisma.SourceCreateWithoutProfileInput, Prisma.SourceUncheckedCreateWithoutProfileInput> | Prisma.SourceCreateWithoutProfileInput[] | Prisma.SourceUncheckedCreateWithoutProfileInput[]
+  connectOrCreate?: Prisma.SourceCreateOrConnectWithoutProfileInput | Prisma.SourceCreateOrConnectWithoutProfileInput[]
+  upsert?: Prisma.SourceUpsertWithWhereUniqueWithoutProfileInput | Prisma.SourceUpsertWithWhereUniqueWithoutProfileInput[]
+  createMany?: Prisma.SourceCreateManyProfileInputEnvelope
+  set?: Prisma.SourceWhereUniqueInput | Prisma.SourceWhereUniqueInput[]
+  disconnect?: Prisma.SourceWhereUniqueInput | Prisma.SourceWhereUniqueInput[]
+  delete?: Prisma.SourceWhereUniqueInput | Prisma.SourceWhereUniqueInput[]
+  connect?: Prisma.SourceWhereUniqueInput | Prisma.SourceWhereUniqueInput[]
+  update?: Prisma.SourceUpdateWithWhereUniqueWithoutProfileInput | Prisma.SourceUpdateWithWhereUniqueWithoutProfileInput[]
+  updateMany?: Prisma.SourceUpdateManyWithWhereWithoutProfileInput | Prisma.SourceUpdateManyWithWhereWithoutProfileInput[]
+  deleteMany?: Prisma.SourceScalarWhereInput | Prisma.SourceScalarWhereInput[]
+}
+
 export type EnumSourceTypeFieldUpdateOperationsInput = {
   set?: $Enums.SourceType
+}
+
+export type SourceCreateWithoutProfileInput = {
+  id?: string
+  title?: string | null
+  type: $Enums.SourceType
+  body?: string | null
+  url?: string | null
+}
+
+export type SourceUncheckedCreateWithoutProfileInput = {
+  id?: string
+  title?: string | null
+  type: $Enums.SourceType
+  body?: string | null
+  url?: string | null
+}
+
+export type SourceCreateOrConnectWithoutProfileInput = {
+  where: Prisma.SourceWhereUniqueInput
+  create: Prisma.XOR<Prisma.SourceCreateWithoutProfileInput, Prisma.SourceUncheckedCreateWithoutProfileInput>
+}
+
+export type SourceCreateManyProfileInputEnvelope = {
+  data: Prisma.SourceCreateManyProfileInput | Prisma.SourceCreateManyProfileInput[]
+  skipDuplicates?: boolean
+}
+
+export type SourceUpsertWithWhereUniqueWithoutProfileInput = {
+  where: Prisma.SourceWhereUniqueInput
+  update: Prisma.XOR<Prisma.SourceUpdateWithoutProfileInput, Prisma.SourceUncheckedUpdateWithoutProfileInput>
+  create: Prisma.XOR<Prisma.SourceCreateWithoutProfileInput, Prisma.SourceUncheckedCreateWithoutProfileInput>
+}
+
+export type SourceUpdateWithWhereUniqueWithoutProfileInput = {
+  where: Prisma.SourceWhereUniqueInput
+  data: Prisma.XOR<Prisma.SourceUpdateWithoutProfileInput, Prisma.SourceUncheckedUpdateWithoutProfileInput>
+}
+
+export type SourceUpdateManyWithWhereWithoutProfileInput = {
+  where: Prisma.SourceScalarWhereInput
+  data: Prisma.XOR<Prisma.SourceUpdateManyMutationInput, Prisma.SourceUncheckedUpdateManyWithoutProfileInput>
+}
+
+export type SourceScalarWhereInput = {
+  AND?: Prisma.SourceScalarWhereInput | Prisma.SourceScalarWhereInput[]
+  OR?: Prisma.SourceScalarWhereInput[]
+  NOT?: Prisma.SourceScalarWhereInput | Prisma.SourceScalarWhereInput[]
+  id?: Prisma.StringFilter<"Source"> | string
+  profileId?: Prisma.StringFilter<"Source"> | string
+  title?: Prisma.StringNullableFilter<"Source"> | string | null
+  type?: Prisma.EnumSourceTypeFilter<"Source"> | $Enums.SourceType
+  body?: Prisma.StringNullableFilter<"Source"> | string | null
+  url?: Prisma.StringNullableFilter<"Source"> | string | null
+}
+
+export type SourceCreateManyProfileInput = {
+  id?: string
+  title?: string | null
+  type: $Enums.SourceType
+  body?: string | null
+  url?: string | null
+}
+
+export type SourceUpdateWithoutProfileInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumSourceTypeFieldUpdateOperationsInput | $Enums.SourceType
+  body?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type SourceUncheckedUpdateWithoutProfileInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumSourceTypeFieldUpdateOperationsInput | $Enums.SourceType
+  body?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type SourceUncheckedUpdateManyWithoutProfileInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumSourceTypeFieldUpdateOperationsInput | $Enums.SourceType
+  body?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -340,6 +480,7 @@ export type SourceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   type?: boolean
   body?: boolean
   url?: boolean
+  profile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["source"]>
 
 export type SourceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -349,6 +490,7 @@ export type SourceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   type?: boolean
   body?: boolean
   url?: boolean
+  profile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["source"]>
 
 export type SourceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -358,6 +500,7 @@ export type SourceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   type?: boolean
   body?: boolean
   url?: boolean
+  profile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["source"]>
 
 export type SourceSelectScalar = {
@@ -370,10 +513,21 @@ export type SourceSelectScalar = {
 }
 
 export type SourceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "profileId" | "title" | "type" | "body" | "url", ExtArgs["result"]["source"]>
+export type SourceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  profile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
+}
+export type SourceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  profile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
+}
+export type SourceIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  profile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
+}
 
 export type $SourcePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Source"
-  objects: {}
+  objects: {
+    profile: Prisma.$ProfilePayload<ExtArgs>
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     profileId: string
@@ -775,6 +929,7 @@ readonly fields: SourceFieldRefs;
  */
 export interface Prisma__SourceClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  profile<T extends Prisma.ProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__ProfileClient<runtime.Types.Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -827,6 +982,10 @@ export type SourceFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   omit?: Prisma.SourceOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SourceInclude<ExtArgs> | null
+  /**
    * Filter, which Source to fetch.
    */
   where: Prisma.SourceWhereUniqueInput
@@ -845,6 +1004,10 @@ export type SourceFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions
    */
   omit?: Prisma.SourceOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SourceInclude<ExtArgs> | null
+  /**
    * Filter, which Source to fetch.
    */
   where: Prisma.SourceWhereUniqueInput
@@ -862,6 +1025,10 @@ export type SourceFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Omit specific fields from the Source
    */
   omit?: Prisma.SourceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SourceInclude<ExtArgs> | null
   /**
    * Filter, which Source to fetch.
    */
@@ -911,6 +1078,10 @@ export type SourceFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.
    */
   omit?: Prisma.SourceOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SourceInclude<ExtArgs> | null
+  /**
    * Filter, which Source to fetch.
    */
   where?: Prisma.SourceWhereInput
@@ -958,6 +1129,10 @@ export type SourceFindManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Omit specific fields from the Source
    */
   omit?: Prisma.SourceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SourceInclude<ExtArgs> | null
   /**
    * Filter, which Sources to fetch.
    */
@@ -1007,6 +1182,10 @@ export type SourceCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.SourceOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SourceInclude<ExtArgs> | null
+  /**
    * The data needed to create a Source.
    */
   data: Prisma.XOR<Prisma.SourceCreateInput, Prisma.SourceUncheckedCreateInput>
@@ -1040,6 +1219,10 @@ export type SourceCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    */
   data: Prisma.SourceCreateManyInput | Prisma.SourceCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SourceIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1054,6 +1237,10 @@ export type SourceUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the Source
    */
   omit?: Prisma.SourceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SourceInclude<ExtArgs> | null
   /**
    * The data needed to update a Source.
    */
@@ -1106,6 +1293,10 @@ export type SourceUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    * Limit how many Sources to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SourceIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1120,6 +1311,10 @@ export type SourceUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the Source
    */
   omit?: Prisma.SourceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SourceInclude<ExtArgs> | null
   /**
    * The filter to search for the Source to update in case it exists.
    */
@@ -1146,6 +1341,10 @@ export type SourceDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the Source
    */
   omit?: Prisma.SourceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SourceInclude<ExtArgs> | null
   /**
    * Filter which Source to delete.
    */
@@ -1178,4 +1377,8 @@ export type SourceDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the Source
    */
   omit?: Prisma.SourceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SourceInclude<ExtArgs> | null
 }

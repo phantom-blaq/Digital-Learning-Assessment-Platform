@@ -13,11 +13,12 @@ enum SourceType {
   DOCUMENT
 }
 
-model User {
+model Profile {
   id       String  @id @default(uuid())
   email    String  @unique
   name     String?
   password String
+  sources  Source[] 
 }
 
 model Source {
@@ -27,4 +28,20 @@ model Source {
   type       SourceType
   body       String?
   url        String?
+  profile    Profile      @relation(fields: [profileId], references: [id], onDelete: Cascade)
+}
+
+model Chat {
+id        String       @id @default(uuid())
+profileId String
+groupId   String
+chatMessages ChatMessage[]
+}
+
+model ChatMessage {
+id       String         @id @default(uuid())
+chatId   String
+chat     Chat            @relation(fields: [chatId], references: [id], onDelete: Cascade)
+response Json?
+followUpQuestions Json?
 }

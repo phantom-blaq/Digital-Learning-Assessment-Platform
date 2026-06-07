@@ -27,6 +27,8 @@ export async function createURLService(URLToBeCreated: UrlSource) {
         type: URLToBeCreated.type,
       },
     });
+    console.log("card Saved Successfully in DB", URLSavedInDB);
+    return { URLSavedInDB };
   } catch (error) {
     console.error("Error in Saving URL", error);
   }
