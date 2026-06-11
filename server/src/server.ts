@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { prisma } from "./lib/prisma";
 import UserRouter from "./api/user/routes";
 import SourceRouter from "./api/source/routes";
+import ChatRouter from "./api/chat/routes";
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ const port = process.env.PORT || 8000;
 
 app.use("/user", UserRouter);
 app.use("/source", SourceRouter);
+app.use("/chat", ChatRouter);
 
 async function startServer() {
   try {

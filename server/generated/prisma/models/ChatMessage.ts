@@ -27,11 +27,13 @@ export type AggregateChatMessage = {
 export type ChatMessageMinAggregateOutputType = {
   id: string | null
   chatId: string | null
+  searchType: $Enums.SearchType | null
 }
 
 export type ChatMessageMaxAggregateOutputType = {
   id: string | null
   chatId: string | null
+  searchType: $Enums.SearchType | null
 }
 
 export type ChatMessageCountAggregateOutputType = {
@@ -39,6 +41,7 @@ export type ChatMessageCountAggregateOutputType = {
   chatId: number
   response: number
   followUpQuestions: number
+  searchType: number
   _all: number
 }
 
@@ -46,11 +49,13 @@ export type ChatMessageCountAggregateOutputType = {
 export type ChatMessageMinAggregateInputType = {
   id?: true
   chatId?: true
+  searchType?: true
 }
 
 export type ChatMessageMaxAggregateInputType = {
   id?: true
   chatId?: true
+  searchType?: true
 }
 
 export type ChatMessageCountAggregateInputType = {
@@ -58,6 +63,7 @@ export type ChatMessageCountAggregateInputType = {
   chatId?: true
   response?: true
   followUpQuestions?: true
+  searchType?: true
   _all?: true
 }
 
@@ -138,6 +144,7 @@ export type ChatMessageGroupByOutputType = {
   chatId: string
   response: runtime.JsonValue | null
   followUpQuestions: runtime.JsonValue | null
+  searchType: $Enums.SearchType
   _count: ChatMessageCountAggregateOutputType | null
   _min: ChatMessageMinAggregateOutputType | null
   _max: ChatMessageMaxAggregateOutputType | null
@@ -166,6 +173,7 @@ export type ChatMessageWhereInput = {
   chatId?: Prisma.StringFilter<"ChatMessage"> | string
   response?: Prisma.JsonNullableFilter<"ChatMessage">
   followUpQuestions?: Prisma.JsonNullableFilter<"ChatMessage">
+  searchType?: Prisma.EnumSearchTypeFilter<"ChatMessage"> | $Enums.SearchType
   chat?: Prisma.XOR<Prisma.ChatScalarRelationFilter, Prisma.ChatWhereInput>
 }
 
@@ -174,6 +182,7 @@ export type ChatMessageOrderByWithRelationInput = {
   chatId?: Prisma.SortOrder
   response?: Prisma.SortOrderInput | Prisma.SortOrder
   followUpQuestions?: Prisma.SortOrderInput | Prisma.SortOrder
+  searchType?: Prisma.SortOrder
   chat?: Prisma.ChatOrderByWithRelationInput
 }
 
@@ -185,6 +194,7 @@ export type ChatMessageWhereUniqueInput = Prisma.AtLeast<{
   chatId?: Prisma.StringFilter<"ChatMessage"> | string
   response?: Prisma.JsonNullableFilter<"ChatMessage">
   followUpQuestions?: Prisma.JsonNullableFilter<"ChatMessage">
+  searchType?: Prisma.EnumSearchTypeFilter<"ChatMessage"> | $Enums.SearchType
   chat?: Prisma.XOR<Prisma.ChatScalarRelationFilter, Prisma.ChatWhereInput>
 }, "id">
 
@@ -193,6 +203,7 @@ export type ChatMessageOrderByWithAggregationInput = {
   chatId?: Prisma.SortOrder
   response?: Prisma.SortOrderInput | Prisma.SortOrder
   followUpQuestions?: Prisma.SortOrderInput | Prisma.SortOrder
+  searchType?: Prisma.SortOrder
   _count?: Prisma.ChatMessageCountOrderByAggregateInput
   _max?: Prisma.ChatMessageMaxOrderByAggregateInput
   _min?: Prisma.ChatMessageMinOrderByAggregateInput
@@ -206,12 +217,14 @@ export type ChatMessageScalarWhereWithAggregatesInput = {
   chatId?: Prisma.StringWithAggregatesFilter<"ChatMessage"> | string
   response?: Prisma.JsonNullableWithAggregatesFilter<"ChatMessage">
   followUpQuestions?: Prisma.JsonNullableWithAggregatesFilter<"ChatMessage">
+  searchType?: Prisma.EnumSearchTypeWithAggregatesFilter<"ChatMessage"> | $Enums.SearchType
 }
 
 export type ChatMessageCreateInput = {
   id?: string
   response?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   followUpQuestions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  searchType: $Enums.SearchType
   chat: Prisma.ChatCreateNestedOneWithoutChatMessagesInput
 }
 
@@ -220,12 +233,14 @@ export type ChatMessageUncheckedCreateInput = {
   chatId: string
   response?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   followUpQuestions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  searchType: $Enums.SearchType
 }
 
 export type ChatMessageUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   response?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   followUpQuestions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  searchType?: Prisma.EnumSearchTypeFieldUpdateOperationsInput | $Enums.SearchType
   chat?: Prisma.ChatUpdateOneRequiredWithoutChatMessagesNestedInput
 }
 
@@ -234,6 +249,7 @@ export type ChatMessageUncheckedUpdateInput = {
   chatId?: Prisma.StringFieldUpdateOperationsInput | string
   response?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   followUpQuestions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  searchType?: Prisma.EnumSearchTypeFieldUpdateOperationsInput | $Enums.SearchType
 }
 
 export type ChatMessageCreateManyInput = {
@@ -241,12 +257,14 @@ export type ChatMessageCreateManyInput = {
   chatId: string
   response?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   followUpQuestions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  searchType: $Enums.SearchType
 }
 
 export type ChatMessageUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   response?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   followUpQuestions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  searchType?: Prisma.EnumSearchTypeFieldUpdateOperationsInput | $Enums.SearchType
 }
 
 export type ChatMessageUncheckedUpdateManyInput = {
@@ -254,6 +272,7 @@ export type ChatMessageUncheckedUpdateManyInput = {
   chatId?: Prisma.StringFieldUpdateOperationsInput | string
   response?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   followUpQuestions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  searchType?: Prisma.EnumSearchTypeFieldUpdateOperationsInput | $Enums.SearchType
 }
 
 export type ChatMessageListRelationFilter = {
@@ -271,16 +290,19 @@ export type ChatMessageCountOrderByAggregateInput = {
   chatId?: Prisma.SortOrder
   response?: Prisma.SortOrder
   followUpQuestions?: Prisma.SortOrder
+  searchType?: Prisma.SortOrder
 }
 
 export type ChatMessageMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   chatId?: Prisma.SortOrder
+  searchType?: Prisma.SortOrder
 }
 
 export type ChatMessageMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   chatId?: Prisma.SortOrder
+  searchType?: Prisma.SortOrder
 }
 
 export type ChatMessageCreateNestedManyWithoutChatInput = {
@@ -325,16 +347,22 @@ export type ChatMessageUncheckedUpdateManyWithoutChatNestedInput = {
   deleteMany?: Prisma.ChatMessageScalarWhereInput | Prisma.ChatMessageScalarWhereInput[]
 }
 
+export type EnumSearchTypeFieldUpdateOperationsInput = {
+  set?: $Enums.SearchType
+}
+
 export type ChatMessageCreateWithoutChatInput = {
   id?: string
   response?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   followUpQuestions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  searchType: $Enums.SearchType
 }
 
 export type ChatMessageUncheckedCreateWithoutChatInput = {
   id?: string
   response?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   followUpQuestions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  searchType: $Enums.SearchType
 }
 
 export type ChatMessageCreateOrConnectWithoutChatInput = {
@@ -371,30 +399,35 @@ export type ChatMessageScalarWhereInput = {
   chatId?: Prisma.StringFilter<"ChatMessage"> | string
   response?: Prisma.JsonNullableFilter<"ChatMessage">
   followUpQuestions?: Prisma.JsonNullableFilter<"ChatMessage">
+  searchType?: Prisma.EnumSearchTypeFilter<"ChatMessage"> | $Enums.SearchType
 }
 
 export type ChatMessageCreateManyChatInput = {
   id?: string
   response?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   followUpQuestions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  searchType: $Enums.SearchType
 }
 
 export type ChatMessageUpdateWithoutChatInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   response?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   followUpQuestions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  searchType?: Prisma.EnumSearchTypeFieldUpdateOperationsInput | $Enums.SearchType
 }
 
 export type ChatMessageUncheckedUpdateWithoutChatInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   response?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   followUpQuestions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  searchType?: Prisma.EnumSearchTypeFieldUpdateOperationsInput | $Enums.SearchType
 }
 
 export type ChatMessageUncheckedUpdateManyWithoutChatInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   response?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   followUpQuestions?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  searchType?: Prisma.EnumSearchTypeFieldUpdateOperationsInput | $Enums.SearchType
 }
 
 
@@ -404,6 +437,7 @@ export type ChatMessageSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   chatId?: boolean
   response?: boolean
   followUpQuestions?: boolean
+  searchType?: boolean
   chat?: boolean | Prisma.ChatDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["chatMessage"]>
 
@@ -412,6 +446,7 @@ export type ChatMessageSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   chatId?: boolean
   response?: boolean
   followUpQuestions?: boolean
+  searchType?: boolean
   chat?: boolean | Prisma.ChatDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["chatMessage"]>
 
@@ -420,6 +455,7 @@ export type ChatMessageSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   chatId?: boolean
   response?: boolean
   followUpQuestions?: boolean
+  searchType?: boolean
   chat?: boolean | Prisma.ChatDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["chatMessage"]>
 
@@ -428,9 +464,10 @@ export type ChatMessageSelectScalar = {
   chatId?: boolean
   response?: boolean
   followUpQuestions?: boolean
+  searchType?: boolean
 }
 
-export type ChatMessageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "chatId" | "response" | "followUpQuestions", ExtArgs["result"]["chatMessage"]>
+export type ChatMessageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "chatId" | "response" | "followUpQuestions" | "searchType", ExtArgs["result"]["chatMessage"]>
 export type ChatMessageInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   chat?: boolean | Prisma.ChatDefaultArgs<ExtArgs>
 }
@@ -451,6 +488,7 @@ export type $ChatMessagePayload<ExtArgs extends runtime.Types.Extensions.Interna
     chatId: string
     response: runtime.JsonValue | null
     followUpQuestions: runtime.JsonValue | null
+    searchType: $Enums.SearchType
   }, ExtArgs["result"]["chatMessage"]>
   composites: {}
 }
@@ -879,6 +917,7 @@ export interface ChatMessageFieldRefs {
   readonly chatId: Prisma.FieldRef<"ChatMessage", 'String'>
   readonly response: Prisma.FieldRef<"ChatMessage", 'Json'>
   readonly followUpQuestions: Prisma.FieldRef<"ChatMessage", 'Json'>
+  readonly searchType: Prisma.FieldRef<"ChatMessage", 'SearchType'>
 }
     
 

@@ -13,35 +13,41 @@ enum SourceType {
   DOCUMENT
 }
 
+enum SearchType {
+  AISEARCH 
+  RESOURCESEARCH
+}
+
 model Profile {
-  id       String  @id @default(uuid())
-  email    String  @unique
+  id       String               @id @default(uuid())
+  email    String               @unique
   name     String?
   password String
   sources  Source[] 
 }
 
 model Source {
-  id         String        @id @default(uuid())
+  id         String               @id @default(uuid())
   profileId  String
   title      String?
   type       SourceType
   body       String?
   url        String?
-  profile    Profile      @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  profile    Profile              @relation(fields: [profileId], references: [id], onDelete: Cascade)
 }
 
 model Chat {
-id        String       @id @default(uuid())
-profileId String
-groupId   String
-chatMessages ChatMessage[]
+id              String            @id @default(uuid())
+profileId       String
+groupId         String
+chatMessages    ChatMessage[]
 }
 
 model ChatMessage {
-id       String         @id @default(uuid())
-chatId   String
-chat     Chat            @relation(fields: [chatId], references: [id], onDelete: Cascade)
-response Json?
+id                String          @id @default(uuid())
+chatId            String
+chat              Chat            @relation(fields: [chatId], references: [id], onDelete: Cascade)
+response          Json?
 followUpQuestions Json?
+searchType        SearchType
 }

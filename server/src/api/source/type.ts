@@ -4,23 +4,23 @@ import { z } from "zod";
 const baseSourceSchema = z.object({
   title: z.string().optional(),
   profileId: z.string(),
+  type: z.enum(["CARD", "URL", "DOCUMENT"]),
+  createdAt: z.date().optional(),
+  updatedAt: z.date().optional(),
 });
 
 // Card Source
 export const cardSourceSchema = baseSourceSchema.extend({
-  type: z.literal("CARD"),
   body: z.string(),
 });
 
 // URL Source
 export const urlSourceSchema = baseSourceSchema.extend({
-  type: z.literal("URL"),
   url: z.string(),
 });
 
 // Document Source
 export const documentSourceSchema = baseSourceSchema.extend({
-  type: z.literal("DOCUMENT"),
   documentId: z.string(),
 });
 

@@ -777,7 +777,8 @@ export const ChatMessageScalarFieldEnum = {
   id: 'id',
   chatId: 'chatId',
   response: 'response',
-  followUpQuestions: 'followUpQuestions'
+  followUpQuestions: 'followUpQuestions',
+  searchType: 'searchType'
 } as const
 
 export type ChatMessageScalarFieldEnum = (typeof ChatMessageScalarFieldEnum)[keyof typeof ChatMessageScalarFieldEnum]
@@ -869,6 +870,20 @@ export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'J
  * Reference to a field of type 'QueryMode'
  */
 export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+/**
+ * Reference to a field of type 'SearchType'
+ */
+export type EnumSearchTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SearchType'>
+    
+
+
+/**
+ * Reference to a field of type 'SearchType[]'
+ */
+export type ListEnumSearchTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SearchType[]'>
     
 
 

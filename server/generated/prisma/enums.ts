@@ -16,3 +16,11 @@ export const SourceType = {
 } as const
 
 export type SourceType = (typeof SourceType)[keyof typeof SourceType]
+
+
+export const SearchType = {
+  AISEARCH: 'AISEARCH',
+  RESOURCESEARCH: 'RESOURCESEARCH'
+} as const
+
+export type SearchType = (typeof SearchType)[keyof typeof SearchType]

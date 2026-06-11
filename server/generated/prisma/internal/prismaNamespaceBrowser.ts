@@ -108,7 +108,8 @@ export const ChatMessageScalarFieldEnum = {
   id: 'id',
   chatId: 'chatId',
   response: 'response',
-  followUpQuestions: 'followUpQuestions'
+  followUpQuestions: 'followUpQuestions',
+  searchType: 'searchType'
 } as const
 
 export type ChatMessageScalarFieldEnum = (typeof ChatMessageScalarFieldEnum)[keyof typeof ChatMessageScalarFieldEnum]
