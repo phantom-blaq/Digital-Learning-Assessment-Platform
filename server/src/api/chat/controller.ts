@@ -28,8 +28,8 @@ export async function createAiSearchChatController(
 ) {
   const chatToBeCreated: chatType = req.body;
   try {
-    const savedURL = await createChatAiSearchService(chatToBeCreated);
-    res.status(200).send(savedURL);
+    const savedChat = await createChatAiSearchService(chatToBeCreated);
+    res.status(200).send(savedChat);
   } catch (error: any) {
     res
       .status(400)
