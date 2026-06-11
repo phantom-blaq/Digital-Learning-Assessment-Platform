@@ -12,6 +12,7 @@ export async function createResourceSearchChatController(
   const chatToBeCreated: chatType = req.body;
   try {
     const savedChat = await createChatResourceSearchService(chatToBeCreated);
+    console.log("Saved chat", savedChat);
 
     res.status(200).send(savedChat);
   } catch (error: any) {
